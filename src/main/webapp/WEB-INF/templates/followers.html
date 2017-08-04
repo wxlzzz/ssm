@@ -1,0 +1,186 @@
+
+
+
+
+#parse("header.html")
+#parse("header_null.html")
+<link rel="stylesheet" href="../../css/001.css">
+<div class="zg-wrap zu-main clearfix " role="main">
+    <div class="zu-main-content">
+        <div class="zu-main-content-inner">
+            <table width="550" height="100" border="0" align="center">
+                <tr>
+                    <td colspan="150" rowspan="2">&nbsp;<img src="../../${profileUser.user.headUrl}" width="150" height="150" /></td>
+                    <td colspan="50">&nbsp;
+                        <h1><span class="STYLE1">${profileUser.user.name}</span>
+                            #if($user.name != $profileUser.user.name)
+                            #if ($profileUser.followed)
+                            <form action="/unfollowUser" method="post" accept-charset="UTF-8">
+                                <input type="hidden" name="userId" value="$profileUser.user.id"/>
+                                <input type="hidden" name="next" value="/user/$profileUser.user.id"/>
+                                <button type="submit" class="submit-button zg-btn-blue">取消关注</button>
+                            </form>
+                            #else
+                            <form action="/followUser" method="post" accept-charset="UTF-8">
+                                <input type="hidden" name="userId" value="$profileUser.user.id"/>
+                                <input type="hidden" name="next" value="/user/$profileUser.user.id"/>
+                                <button type="submit" class="submit-button zg-btn-blue">关注他</button>
+                            </form>
+                            #end
+                            #end
+
+                        </h1></td>
+                </tr>
+                <tr>
+                    <td width="100">&nbsp;&#8226;<span class="STYLE2"><a href ="/user/${profileUser.user.id}/followers">${profileUser.followerCount}粉丝</a></span></td>
+                    <td width="100">&nbsp;&#8226;<span class="STYLE2"><a href ="/user/${profileUser.user.id}/followees">${profileUser.followeeCount}关注</a></span></td>
+                    <td width="100">&nbsp;&#8226;<span class="STYLE2"><a href = "/mytopic/1">${profileUser.followTopicCount} 感兴趣话题</a></span></td>
+
+                </tr>
+            </table>
+            <hr />
+            <div class="zg-section" id="zh-home-list-title">
+                <i class="zg-icon zg-icon-feedlist"></i>
+                #if($user.name != $profileUser.user.name)
+                $profileUser.user.name的粉丝
+                #else
+                我的粉丝
+                #end
+                <input type="hidden" id="is-topstory">
+                <span class="zg-right zm-noti-cleaner-setting" style="list-style:none"></span></div>
+            <div class="zu-main-feed-con navigable" data-feedtype="topstory" id="zh-question-list" data-widget="navigable" data-navigable-options="{&quot;items&quot;:&quot;&gt; .zh-general-list .feed-content&quot;,&quot;offsetTop&quot;:-82}">
+                <a href="javascript:;" class="zu-main-feed-fresh-button" id="zh-main-feed-fresh-button" style="display:none"></a>
+                <div id="js-home-feed-list" class="zh-general-list topstory clearfix" data-init="{&quot;params&quot;: {}, &quot;nodename&quot;: &quot;TopStory2FeedList&quot;}" data-za-module="TopStoryFeedList">
+                    #foreach($vo in $followers)
+                    <table width="550" height="100" border="0" align="center">
+                        <tr>
+                            <td width="50">&nbsp;<img src="../../${vo.user.headUrl}" width="50" height="50" /></td>
+                            <td width="100">&nbsp;<a href="/user/${vo.user.id}">${vo.user.name}</a></td>
+                            <td width="100">&nbsp;<a href="/user/${vo.user.id}/followers">${vo.followerCount}粉丝</a></td>
+                            <td width="100">&nbsp;<a href="/user/${vo.user.id}/followees">${vo.followeeCount}关注</a></td>
+                            <td width="100">&nbsp;<a href="/usertopic/${vo.user.id}">${vo.followTopicCount} 感兴趣话题</a></td>
+
+                            <td width="100">&nbsp;
+                                #if($vo.followed)
+                                <div class="zg-right">
+                                    <button class="zg-btn zg-btn-unfollow zm-rich-follow-btn small nth-0
+                                    js-follow-user" data-status="1" data-id="$vo.user.id">已关注</button>
+                                </div>
+                                #else
+                                <div class="zg-right">
+                                    <button class="zg-btn zg-btn-follow zm-rich-follow-btn small nth-0
+                                    js-follow-user" data-id="$vo.user.id">未关注</button>
+                                </div>
+                                #end
+                            </td>
+                        </tr>
+                    </table>
+                    #end
+                </div>
+                <a href="javascript:;" id="zh-load-more" data-method="next" class="zg-btn-white zg-r3px zu-button-more" style="">更多</a></div>
+        </div>
+    </div>
+</div>
+
+    <script type="text/json" class="json-inline" data-name="guiders2">{
+        "exclusive-popover": {},
+        "section": {},
+        "editor": []
+      }</script>
+    <script type="text/template" class="bind-phone-confirmation-dialog-template">< div class = "clearfix bind-phone-confirmation-dialog"data - za - module = "BindPhoneForm" > <p > <span class = "bind-phone-tip" > 应国家法规对于帐号实名的要求，进行下一步操作前，需要先完成手机绑定。 < /span>
+            <a href="https:/ / zhuanlan.zhihu.com / p / 27257715 " target="_blank ">了解更多</a></p>
+    <div class="text - right ">
+        <a href="#" class="not - to - bind - phone ">暂不绑定</a>&nbsp;&nbsp;
+        <button class="zg - btn - blue go - to - bind - phone ">去绑定手机</button></div>
+    </div>
+    "</script>
+    <script type="text/template" class="bind-phone-dialog-template">< div class = "code-activate-view clearfix"data - za - module = "BindPhoneForm" > <div class = "tip" > 绑定手机后，你就可以使用知乎的提问、回答、评论和编辑等功能。 < /div>
+        <form class="send-code clearfix">
+            <div class="input-wrapper">
+                <label class="info" for="phone_no-to-send">手机：</label > <input type = "text"id = "phone_no-to-send"name = "new_phone_no"class = "text"required ></div>
+            <button class="submit zg-btn-blue">获取验证码</button ></form>
+        <form class="activate clearfix">
+            <div class="input-wrapper">
+                <label class="info" for="phone_no-to-bind">手机：</label > <input type = "text"id = "phone_no-to-bind"name = "new_phone_no"class = "text"required ></div>
+            <div class="input-wrapper verification-code">
+                <label class="info" for="digits">验证码：</label > <input type = "text"id = "digits"name = "digits"class = "text"placeholder = "6 位数验证码"maxlength = "6"required > <button type = "button"class = "resend-code" > 重发验证码 < /button></div > <button class = "submit zg-btn-blue" > 确认 < /button></form > <div class = "form-help-extra z-text-muted" > <p > 没有收到验证码？ < /p>
+            <p>你也可以私信 <a target="_blank" href="http:/ / www.zhihu.com / people / zhihuadmin ">@知乎小管家</a> 或者发邮件至 <a href="mailto: i@zhihu.com ">i@zhihu.com</a> 联系知乎管理员</p></div>
+    </div>
+    "</script>
+    <script type="text/template" class="bind-email-notification-dialog-template">< div class = "clearfix bind-email-notification-dialog"data - za - module = "BindMailForm" > <p > 由于你的邮箱未验证，你将不能继续用邮箱登录。你可以去重新绑定邮箱。 < /p>
+    <div class="text-right">
+        <a class="reload" href="#">不绑定</a > &nbsp; & nbsp; < a href = "/settings/account"class = "zg-btn-blue go-to-bind" > 去绑定邮箱 < /a></div > </div>
+    /</script>
+    <script type="text/json" class="json-inline" data-name="current_user">["\u9b4f\u6e58\u9675", "wei-xiang-ling-3", "https:\/\/pic1.zhimg.com\/da8e974dc_s.jpg", "11262bac8824cbb2085bd28d91e1d6b7", "", 0, 0, true, "wxl19921120@qq.com", "http:\/\/mail.qq.com", 0, true, false, false, "591642957011750912", false, false, false, true, null, null, false]</script>
+    <script type="text/json" class="json-inline" data-name="front_web_config">{
+        "realname_win_config": {
+          "timestamp": 1498147200,
+          "continue_time": 3600,
+          "continue": 1,
+          "tip": "\u5e94\u56fd\u5bb6\u6cd5\u89c4\u5bf9\u4e8e\u5e10\u53f7\u5b9e\u540d\u7684\u8981\u6c42\uff0c\u8fdb\u884c\u4e0b\u4e00\u6b65\u64cd\u4f5c\u524d\uff0c\u9700\u8981\u5148\u5b8c\u6210\u624b\u673a\u7ed1\u5b9a\u3002"
+        }
+      }</script>
+    <script type="text/json" class="json-inline" data-name="user_status">[null, null, false]</script>
+    <script type="text/json" class="json-inline" data-name="env">["zhihu.com", "comet.zhihu.com", false, null, false, false]</script>
+    <script type="text/json" class="json-inline" data-name="permissions">[]</script>
+    <script type="text/json" class="json-inline" data-name="ga_vars">{
+        "user_created": 1433838673000,
+        "now": 1498465377000,
+        "abtest_mask": "---------0--------------------",
+        "user_attr": [1, 0, 0, "-", 1],
+        "user_hash": "11262bac8824cbb2085bd28d91e1d6b7"
+      }</script>
+    <script type="text/json" class="json-inline" data-name="ra-urls">{
+        "Copyright": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/Copyright.98ac6609.js",
+        "PayUIApp": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/PayUIApp.ca78ba78.js",
+        "CouponApp": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/CouponApp.8387f93f.js",
+        "PaymentApp": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/PaymentApp.7f16d61c.js",
+        "Community": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/Community.ea022099.js",
+        "Report": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/Report.1a8d7f59.js",
+        "OrgOpHelp": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/OrgOpHelp.f891eee7.js",
+        "common": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/common.a4dd3236.js",
+        "BalanceApp": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/BalanceApp.676e538e.js",
+        "AnswerWarrant": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/AnswerWarrant.97f134aa.js",
+        "CommentApp": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/CommentApp.d5b37579.js"
+      }</script>
+    <script src="../js/vendor.cb14a042.js"></script>
+    <script src="../js/base.7a55fd95.js"></script>
+    <script src="../js/common.02dedc55.js"></script>
+    <script src="../js/richtexteditor.778e5cb1.js" async=""></script>
+    <script src="../js/page-main.e08e9664.js"></script>
+    <meta name="entry" content="ZH.entryHome" data-module-id="page-main">
+    <script type="text/zscript" znonce="5f7165fd78bc48ee86a2681624a3b5d1"></script>
+    <input type="hidden" name="_xsrf" value="4704b3bea4d8082b5bc7b82b92ed0e59">
+    <div class="zh-backtotop" style="display:none">
+        <a data-action="backtotop" data-tooltip="s$r$回到顶部" href="javascript:;" class="btn-backtotop btn-action">
+            <div class="arrow"></div>
+            <div class="stick"></div>
+        </a>
+    </div>
+    <div id="zh-hovercard"></div>
+    <div id="zh-tooltip"></div>
+    <div class="copyright-notification">
+        <div class="user-image-container">
+            <img class="user-image" src="https://www.zhihu.com/"></div>
+        <div class="tooltip right noty-tooltip">
+            <div class="tooltip-arrow arrow"></div>
+            <div class="tooltip-inner inner">保留所有权利，禁止转载</div></div>
+    </div>
+
+
+    <script type="text/javascript" src="../scripts/main/jquery.js"></script>
+    <script type="text/javascript" src="../scripts/main/base/base.js"></script>
+    <script type="text/javascript" src="../scripts/main/base/util.js"></script>
+    <script type="text/javascript" src="../scripts/main/base/event.js"></script>
+    <script type="text/javascript" src="../scripts/main/util/action.js"></script>
+    <script type="text/javascript" src="../scripts/main/util/business.js"></script>
+    <script type="text/javascript" src="../scripts/main/component/component.js"></script>
+    <script type="text/javascript" src="../scripts/main/component/popup.js"></script>
+    <script type="text/javascript" src="../scripts/main/component/popupAdd.js"></script>
+    <script type="text/javascript" src="../scripts/main/component/popupMsg.js"></script>
+    <script type="text/javascript" src="../scripts/main/site/home.js"></script>
+    <script type="text/javascript" src="../scripts/main/site/detail.js"></script>
+    <script type="text/javascript" src="../scripts/main/site/profile.js"></script>
+    </body>
+
+    </html>

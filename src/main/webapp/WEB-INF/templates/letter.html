@@ -1,0 +1,69 @@
+#parse("header.html")
+#parse("header_null.html")
+<link rel="stylesheet" href="../css/letter.css">
+    <div id="main">
+        <div class="zg-wrap zu-main clearfix ">
+                <p>用户私信<p>
+                <hr/>
+                #foreach ($conversation in $conversations)
+
+                #if($conversation.user.id != 4)
+                <div class="HomeEntry" data-za-module="HomeEntry">
+
+                    <div class="HomeEntry-avatar">
+                        <div>
+                            <img class="Avatar Avatar--xs" src="$conversation.user.headUrl"  >
+                            <span class="name"><a href = "/user/${conversation.user.id}">$!{conversation.user.getName()}</a></span>
+                        <!--<span id="zh-top-nav-new-pm2" class="zg-noti-number zu-top-nav-pm-count" style="visibility:visible" data-count="1">$!conversation.unread</span></a>-->
+                        </div>
+                    </div>
+                    <div class="HomeEntry-box">
+                        <span class="HomeEntry-boxArrow"></span>
+                        <ul class="HomeEntry-list">
+
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "/msg/detail?conversationId=$conversation.conversation.conversationId&&targetUserId=$conversation.user.id">
+                            $conversation.conversation.content</a>
+
+                        </ul>
+                        <div class="HomeEntry-draft">$conversation.createdDate &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 共$conversation.conversation.id条会话</div>
+
+
+                    </div>
+                </div>
+                #end
+                #end
+
+            <p>系统消息<p>
+            <hr/>
+            #foreach ($conversation in $conversations)
+
+            #if($conversation.user.id == 4)
+            <div class="HomeEntry" data-za-module="HomeEntry">
+
+                <div class="HomeEntry-avatar">
+                    <div>
+                        <img class="Avatar Avatar--xs" src="../img/photo.jpg" srcset="../img/photo2.jpg" >
+                        <span class="name">$!{conversation.user.getName()}</span>
+                        <!--<span id="zh-top-nav-new-pm1" class="zg-noti-number zu-top-nav-pm-count" style="visibility:visible" data-count="1">$!conversation.unread</span></a>-->
+                    </div>
+                </div>
+                <div class="HomeEntry-box">
+                    <span class="HomeEntry-boxArrow"></span>
+                    <ul class="HomeEntry-list">
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "/msg/detail?conversationId=$conversation.conversation.conversationId">
+                        $conversation.conversation.content</a>
+
+                    </ul>
+                    <div class="HomeEntry-draft">$conversation.createdDate &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 共$conversation.conversation.id条会话</div>
+
+
+                </div>
+            </div>
+            #end
+            #end
+
+
+        </div>
+    </div>
+#parse("footer.html")

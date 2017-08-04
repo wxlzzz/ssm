@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.CommentDAO">
+    <sql id="table">comment</sql>
+    <sql id="insertFields">user_id, content, created_date, entity_id, entity_type, status</sql>
+    <sql id="selectFields">id,user_id, content, created_date, entity_id, entity_type, status</sql>
+
+    <insert id="addComment" >
+        insert into
+        <include refid="table"/>
+        (<include refid="insertFields"/>)
+        values
+        (#{comment.userId},#{comment.content},#{comment.createdDate},#{comment.entityId},#{comment.entityType},#{comment.status})
+    </insert>
+
+    <select id="selectCommentByEntity" resultType="com.ssm.model.Comment">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+
+        where entity_id=#{entityId} and entity_type=#{entityType} order by id desc
+
+    </select>
+
+    <select id="getCommentCount" resultType="int">
+        SELECT
+        count(id)
+        FROM
+        <include refid="table"/>
+        where entity_id=#{entityId}
+        and entity_type=#{entityType}
+    </select>
+
+    <update id="updateStatus" >
+        update
+        <include refid="table"/>
+        set
+        status=#{status}
+        where id=#{id}
+    </update>
+
+    <select id="getCommentById" resultType="com.ssm.model.Comment">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+
+        where id = #{id}
+
+    </select>
+
+    <select id="getUserCommentCount" resultType="int">
+        SELECT
+        COUNT(id)
+        FROM
+        <include refid="table"/>
+        where user_id = #{userId}
+    </select>
+
+
+
+
+</mapper>

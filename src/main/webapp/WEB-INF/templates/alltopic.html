@@ -1,0 +1,152 @@
+#parse("header.html")
+#parse("header_topic.html")
+  <div class="zg-wrap zu-main clearfix " role="main">
+   <div class="zu-main-content"> 
+    <div class="zu-main-content-inner"> 
+     <div class="zm-topic-cat-page"> 
+      <div class="zm-topic-cat-title"> 
+       <a  class="zg-link-gray zg-right"> <span>共 $!{count}个话题</span> </a>
+       <h2><i class="zg-icon zg-icon-topic-square"></i>话题广场</h2> 
+      </div> 
+      <ul class="zm-topic-cat-main clearfix">
+       #foreach($vo in $vos)
+          #if($index == ${vo.num})
+          <li class="zm-topic-cat-item current" data-id="253"><a href="/alltopic/$!{vo.num}">$!{vo.topic.topicName}</a></li>
+          #else
+          <li class="zm-topic-cat-item " data-id="253"><a href="/alltopic/$!{vo.num}">$!{vo.topic.topicName}</a></li>
+          #end
+       #end
+
+       
+      </ul> 
+      <div class="zm-topic-cat-sub"> 
+       <div class="zh-general-list clearfix" data-init="{&quot;params&quot;: {&quot;topic_id&quot;: 253, &quot;offset&quot;: 0, &quot;hash_id&quot;: &quot;11262bac8824cbb2085bd28d91e1d6b7&quot;}, &quot;nodename&quot;: &quot;TopicsPlazzaListV2&quot;}" style="display: block;"> 
+
+        #foreach($vo_1 in $vos_1)
+            #if($vo_1.num ==0)
+           <div class="item">
+            <div class="blk">
+             <a target="_blank" href="/topic/$!{vo_1.topic_1.topicId}"> <img src="$!{vo_1.topic_1.topicImage}" alt=$!{vo_1.topic_1.topicName} /> <strong>$!{vo_1.topic_1.topicName}</strong> </a>
+             <p> </p>
+             <a id="t::-253" href="/topic/$!{vo_1.topic_1.topicId}" class="follow meta-item zg-follow"><i class="z-icon-follow"></i>$!{vo_1.topic_1.followedCount}人关注</a>
+            </div>
+           </div>
+            #else
+            <div class="item even">
+             <div class="blk">
+              <a target="_blank" href="/topic/$!{vo_1.topic_1.topicId}"> <img src="$!{vo_1.topic_1.topicImage}" alt=$!{vo_1.topic_1.topicName} /> <strong>$!{vo_1.topic_1.topicName}</strong> </a>
+              <p> </p>
+              <a id="t::-1172" href="javascript:;" class="follow meta-item zg-follow"><i class="z-icon-follow"></i>$!{vo_1.topic_1.followedCount}人关注</a>
+             </div>
+            </div>
+            #end
+        #end
+       </div>
+       <a aria-role="button" class="zg-btn-white zu-button-more">更多</a> 
+       <a href="javascript:;" id="zh-load-more" data-method="next" class="zg-btn-white zg-r3px zu-button-more" style="display:none">更多</a> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+   <div class="zu-main-sidebar" data-za-module="RightSideBar"> 
+    <div class="zm-side-section explore-side-section"> 
+     <div class="zm-side-section-inner"> 
+      <div class="section-title"> 
+       <h3>热门话题排行</h3>
+      </div> 
+      <ul class="list hot-topics">
+          #foreach($topic in $maxList)
+          <div class="topic-item zg-clear zm-profile-section-item zm-item">
+              <div class="topic-avatar">
+                  <a href="/topic/$!{topic.topicId}" target="_blank"><img class="Avatar Avatar--xs" src=$!{topic.topicImage}  alt="$!{topic.topicName}" /></a>
+              </div>
+              <div class="topic-item-content">
+                  <h3 class="topic-item-title"> <a href="/topic/$!{topic.topicId}" target="_blank"><strong>$!{topic.topicName}</strong></a> </h3>
+                  <a data-follow="t:link:simple" data-id="4797" data-token="19564606" href="/topic/$!{topic.topicId}" class="meta-item zg-follow"><i class="z-icon-follow"></i>${topic.followedCount}人关注</a>
+              </div>
+          </div>
+          #end
+
+
+      </ul> 
+     </div> 
+    </div> 
+    
+   </div> 
+  </div> 
+  <script type="text/json" class="json-inline" data-name="guiders2">{"exclusive-popover":{},"section":{},"editor":[]}</script> 
+  <script type="text/template" class="bind-phone-confirmation-dialog-template">
+<div class="clearfix bind-phone-confirmation-dialog" data-za-module="BindPhoneForm">
+<p>
+<span class="bind-phone-tip">应国家法规对于帐号实名的要求，进行下一步操作前，需要先完成手机绑定。</span>
+<a href="https://zhuanlan.zhihu.com/p/27257715" target="_blank">了解更多</a>
+</p>
+<div class="text-right">
+<a href="#" class="not-to-bind-phone">暂不绑定</a>&nbsp;&nbsp;
+<button class="zg-btn-blue go-to-bind-phone">去绑定手机</button>
+</div>
+</div>
+</script> 
+  <script type="text/template" class="bind-phone-dialog-template">
+<div class="code-activate-view clearfix" data-za-module="BindPhoneForm">
+<div class="tip">绑定手机后，你就可以使用知乎的提问、回答、评论和编辑等功能。</div>
+<form class="send-code clearfix">
+<div class="input-wrapper">
+<label class="info" for="phone_no-to-send">手机：</label>
+<input type="text" id="phone_no-to-send" name="new_phone_no" class="text" required>
+</div>
+<button class="submit zg-btn-blue">获取验证码</button>
+</form>
+<form class="activate clearfix">
+<div class="input-wrapper">
+<label class="info" for="phone_no-to-bind">手机：</label>
+<input type="text" id="phone_no-to-bind" name="new_phone_no" class="text" required>
+</div>
+<div class="input-wrapper verification-code">
+<label class="info" for="digits">验证码：</label>
+<input type="text" id="digits" name="digits" class="text" placeholder="6 位数验证码" maxlength="6" required>
+<button type="button" class="resend-code">重发验证码</button>
+</div>
+<button class="submit zg-btn-blue">确认</button>
+</form>
+<div class="form-help-extra z-text-muted">
+<p>没有收到验证码？</p>
+<p>你也可以私信 <a target="_blank" href="http://www.zhihu.com/people/zhihuadmin">@知乎小管家</a> 或者发邮件至 <a href="mailto:i@zhihu.com">i@zhihu.com</a> 联系知乎管理员</p>
+</div>
+</div>
+</script> 
+  <script type="text/template" class="bind-email-notification-dialog-template">
+<div class="clearfix bind-email-notification-dialog" data-za-module="BindMailForm">
+<p>
+由于你的邮箱未验证，你将不能继续用邮箱登录。你可以去重新绑定邮箱。
+</p>
+<div class="text-right">
+<a class="reload" href="#">不绑定</a>&nbsp;&nbsp;
+<a href="/settings/account" class="zg-btn-blue go-to-bind">去绑定邮箱</a>
+</div>
+</div>
+</script> 
+  <script type="text/json" class="json-inline" data-name="current_user">["\u9b4f\u6e58\u9675","wei-xiang-ling-3","https:\/\/pic1.zhimg.com\/da8e974dc_s.jpg","11262bac8824cbb2085bd28d91e1d6b7","",0,0,true,"wxl19921120@qq.com","http:\/\/mail.qq.com",0,true,false,false,"591642957011750912",false,false,false,true,null,null,false]</script> 
+  <script type="text/json" class="json-inline" data-name="front_web_config">{"realname_win_config":{"timestamp":1501344000,"continue_time":3600,"continue":1,"tip":"\u5e94\u56fd\u5bb6\u6cd5\u89c4\u5bf9\u4e8e\u5e10\u53f7\u5b9e\u540d\u7684\u8981\u6c42\uff0c\u8fdb\u884c\u4e0b\u4e00\u6b65\u64cd\u4f5c\u524d\uff0c\u9700\u8981\u5148\u5b8c\u6210\u624b\u673a\u7ed1\u5b9a\u3002","skip_ut_verification":1}}</script> 
+  <script type="text/json" class="json-inline" data-name="user_status">[null,null,false]</script> 
+  <script type="text/json" class="json-inline" data-name="env">["zhihu.com","comet.zhihu.com",false,null,false,false]</script> 
+  <script type="text/json" class="json-inline" data-name="permissions">[]</script> 
+  <script type="text/json" class="json-inline" data-name="ga_vars">{"user_created":1433838673000,"now":1499755704000,"abtest_mask":"---------0--------------------","user_attr":[1,0,0,"-",1],"user_hash":"11262bac8824cbb2085bd28d91e1d6b7"}</script> 
+  <script type="text/json" class="json-inline" data-name="ra-urls">{"Copyright":"https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/Copyright.98ac6609.js","PayUIApp":"https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/PayUIApp.ca78ba78.js","CouponApp":"https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/CouponApp.8387f93f.js","PaymentApp":"https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/PaymentApp.7f16d61c.js","Community":"https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/Community.ea022099.js","Report":"https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/Report.1a8d7f59.js","OrgOpHelp":"https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/OrgOpHelp.f891eee7.js","common":"https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/common.a4dd3236.js","BalanceApp":"https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/BalanceApp.676e538e.js","AnswerWarrant":"https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/AnswerWarrant.97f134aa.js","CommentApp":"https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/CommentApp.966880f3.js"}</script> 
+  <script src="./话题广场 - 知乎_files/vendor.cb14a042.js.下载"></script> 
+  <script src="./话题广场 - 知乎_files/base.e0f055ab.js.下载"></script> 
+  <script src="./话题广场 - 知乎_files/common.e4a2c5cd.js.下载"></script> 
+  <script src="./话题广场 - 知乎_files/richtexteditor.5a4142fb.js.下载" async=""></script> 
+  <script src="./话题广场 - 知乎_files/page-misc.ee4a1695.js.下载"></script> 
+  <meta name="entry" content="ZH.entryTS" data-module-id="page-misc" /> 
+  <script type="text/zscript" znonce="9504cd2d546441b8be8b7d2ddcce905d"></script> 
+  <input type="hidden" name="_xsrf" value="36623037343435662d353861342d343532622d396633302d333733616536343937616262" /> 
+  <div class="zh-backtotop" style="display:none">
+   <a data-action="backtotop" data-tooltip="s$r$回到顶部" href="javascript:;" class="btn-backtotop btn-action">
+    <div class="arrow"></div>
+    <div class="stick"></div></a>
+  </div>
+  <div id="zh-hovercard"></div>
+  <div id="zh-tooltip"></div>
+
+#parse("footer.html")

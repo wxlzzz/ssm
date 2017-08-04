@@ -1,0 +1,57 @@
+#parse("header.html")
+#parse("header_message.html")
+<div class="zg-wrap zu-main clearfix with-indention-votebar" itemscope="" itemtype="http://schema.org/Question"
+     id="zh-single-question-page" data-urltoken="36301524" role="main">
+    <div class="zu-main-content">
+        <div class="zu-main-content-inner">
+            <meta itemprop="isTopQuestion" content="false">
+            <meta itemprop="visitsCount" content="402">
+            <!--
+            <div class="zm-tag-editor zg-section">
+                <div class="zm-tag-editor-labels zg-clear">
+                    <a data-tip="t$b$19550730" class="zm-item-tag" href="">新浪微博</a>
+                    <a data-tip="t$b$19554412" class="zm-item-tag" href="">网络营销</a>
+                    <a data-tip="t$b$19559739" class="zm-item-tag" href="">微博粉丝</a>
+                    <a data-tip="t$b$19560290" class="zm-item-tag" href="">僵尸粉</a>
+                    <a data-tip="t$b$19565757" class="zm-item-tag" href="">网络水军</a>
+                    <a href="javascript:;" class="zu-edit-button" name="edit">
+                        <i class="zu-edit-button-icon"></i>修改</a>
+                </div>
+            </div>
+            -->
+
+
+            <a name="draft"></a>
+            <form action="/msg/addMessage" method="post" id="commentform" accept-charset="UTF-8">
+                <input type="hidden" name="questionId" value="$question.id"/>
+                <input type="hidden" name="userId" value="$user.id"/>
+                <p>问题标题</p>
+                <div id="zh-question-answer-form-wrap" class="zh-question-answer-form-wrap">
+                    <div class="zm-editable-editor-wrap" style="">
+                        <div class="zm-editable-editor-outer">
+                            <div class="zm-editable-editor-field-wrap">
+                                <p>消息目标</p>
+                                <input type="text" name="toName" />
+                                #if($msg)
+                                $msg
+                                #end
+
+                            </div>
+                            <div class="zm-editable-editor-field-wrap">
+                                <p>消息内容</p>
+                                <textarea name="content" id="content" class="zm-editable-editor-field-element editable" style="font-style: italic;width:100%;"></textarea>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="zm-command clearfix">
+                            <span class=" zg-right">
+                                <button type="submit" class="submit-button zg-btn-blue">发送消息</button></span>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+#parse("footer.html")

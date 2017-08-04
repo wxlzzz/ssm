@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.TopicDAO">
+    <sql id="table">topic</sql>
+    <sql id="insertFields">topic_name,topic_desc,topic_image,parent_topic,followed_count</sql>
+    <sql id="selectFields">topic_id,topic_name,topic_desc,topic_image,parent_topic,followed_count</sql>
+
+    <insert id="insertTopic" >
+        insert into
+        <include refid="table"/>
+        (<include refid="insertFields"/>)
+        values
+        (#{topic.topicName},#{topic.topicDesc},#{topic.topicImage},#{topic.parentTopic},#{topic.followedCount})
+    </insert>
+
+    <select id="selectTopicByTopicName" resultType="com.ssm.model.Topic">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+
+            WHERE topic_name = #{topicName}
+
+    </select>
+
+    <select id="selectTopicByTopicId" resultType="com.ssm.model.Topic">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+
+        WHERE topic_id = #{id}
+
+    </select>
+
+    <select id="SelectTopicAll" resultType="com.ssm.model.Topic">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+
+    </select>
+
+    <select id="SelectTopicParent" resultType="com.ssm.model.Topic">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+        WHERE
+        parent_topic = "null";
+    </select>
+
+    <select id="SelectTopicByParentName" resultType="com.ssm.model.Topic">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+        WHERE
+        parent_topic = #{name}
+
+    </select>
+
+    <update id="updateFollowCount" >
+        update
+        <include refid="table"/>
+        set
+        followed_count=#{followCount}
+
+        where topic_id = #{topicId}
+    </update>
+
+
+    <select id="selectMaxList" resultType="com.ssm.model.Topic">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+        ORDER BY
+        followed_count
+        DESC
+        LIMIT 0,6
+    </select>
+
+
+</mapper>

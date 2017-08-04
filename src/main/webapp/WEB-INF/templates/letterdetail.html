@@ -1,0 +1,44 @@
+#parse("header.html")
+#parse("header_null.html")
+<link rel="stylesheet" href="../css/letter.css">
+
+<div id="main">
+    <div class="zg-wrap zu-main clearfix ">
+        <ul class="letter-chatlist">
+
+            #if($targetUser.id != 4 )
+            <p>与${targetUser.name}的对话<P>
+            <hr/>
+            #else
+            <p>系统消息<P>
+            <hr/>
+            #end
+
+            #foreach($message in $messages)
+
+            <div class="HomeEntry" data-za-module="HomeEntry">
+                <div class="HomeEntry-avatar">
+                    #if($message.userName == $user.name)
+                    <img class="Avatar Avatar--xs" src="$message.headUrl"   >我</div>
+                    #else
+                    <img class="Avatar Avatar--xs" src="$message.headUrl"   ><a href = "/user/${message.userId}">$!message.userName</a></div>
+                    #end
+                <div class="HomeEntry-box">
+                    <span class="HomeEntry-boxArrow"></span>
+                    <ul class="HomeEntry-list">
+
+                        <li class="HomeEntry-item">
+                                <i class="sprite-home-post-off"></i>$!message.message.content
+                        </li>
+                    </ul>
+                    <div class="HomeEntry-draft">$!message.createdDate</div>
+                </div>
+            </div>
+            #end
+        </ul>
+
+    </div>
+</div>
+
+
+#parse("footer.html")

@@ -1,0 +1,258 @@
+
+
+
+
+
+#parse("header.html")
+#parse("header_first.html")
+
+<div class="zg-wrap zu-main clearfix " role="main">
+    <div class="zu-main-content">
+        <div class="zu-main-content-inner">
+            <div class="HomeEntry" data-za-module="HomeEntry">
+                <div class="HomeEntry-avatar">
+                    <img class="Avatar Avatar--xs" src="img/photo.jpg" srcset="img/photo2.jpg" alt="魏湘陵"></div>
+                <div class="HomeEntry-box">
+                    <span class="HomeEntry-boxArrow"></span>
+                    <ul class="HomeEntry-list">
+                        <li class="HomeEntry-item">
+                            <a href="https://www.zhihu.com/#" class="HomeEntry-ask js-HomeEntry-ask">
+                                <i class="sprite-home-question-off"></i>提问</a>
+                        </li>
+                        <li class="HomeEntry-item">
+                            <a href="https://www.zhihu.com/question" target="_blank" class="HomeEntry-answer js-HomeEntry-answer">
+                                <i class="sprite-home-answer-off"></i>回答</a>
+                        </li>
+                        <li class="HomeEntry-item">
+                            <a href="https://zhuanlan.zhihu.com/write" target="_blank" class="HomeEntry-post js-HomeEntry-post">
+                                <i class="sprite-home-post-off"></i>写文章</a>
+                        </li>
+                    </ul>
+                    <div class="HomeEntry-draft">
+                        <a href="https://www.zhihu.com/draft" target="_blank">草稿</a></div>
+                </div>
+            </div>
+            <div class="zg-section" id="zh-home-list-title">
+                <i class="zg-icon zg-icon-feedlist"></i>有关$!{keyword}的动态
+                <input type="hidden" id="is-topstory">
+                <span class="zg-right zm-noti-cleaner-setting" style="list-style:none"></span></div>
+            <div class="zu-main-feed-con navigable" data-feedtype="topstory" id="zh-question-list" data-widget="navigable" data-navigable-options="{&quot;items&quot;:&quot;&gt; .zh-general-list .feed-content&quot;,&quot;offsetTop&quot;:-82}">
+                <a href="javascript:;" class="zu-main-feed-fresh-button" id="zh-main-feed-fresh-button" style="display:none"></a>
+                <div id="js-home-feed-list" class="zh-general-list topstory clearfix" data-init="{&quot;params&quot;: {}, &quot;nodename&quot;: &quot;TopStory2FeedList&quot;}" data-za-module="TopStoryFeedList">
+                    #foreach($vo in $vos)
+                    <div class="feed-item folding feed-item-hook feed-item-0" feed-item-a="" data-type="a" id="feed-0" data-za-module="FeedItem" data-za-index="">
+                        <meta itemprop="ZReactor" data-id="62901934" data-meta="{&quot;source_type&quot;: &quot;topic_acknowledged_answer&quot;, &quot;voteups&quot;: 205, &quot;comments&quot;: 58, &quot;source&quot;: [[&quot;topic&quot;, 2084]]}" />
+                        <div class="feed-item-inner">
+                            <div class="avatar">
+                                <a title="信息技术（IT）" data-hovercard="t$t$19556498" class="zm-item-link-avatar" href="https://www.zhihu.com/topic/19556498" target="_blank">
+                                    <img src="img/photo.jpg" alt="信息技术（IT）" class="side-topic-avatar" /></a></div>
+                            <div class="feed-main">
+                                <div class="feed-source" data-za-module="FeedSource">来自话题:
+                                    <a href="https://www.zhihu.com/topic/19556498" data-hovercard="t$b$19556498" data-token="19556498" data-topicid="2084" data-follow="1" data-interest="1" target="_blank" data-za-element-name="Title">$!{vo.question.topicName}</a></div>
+                                <div class="feed-content" data-za-module="AnswerItem">
+                                    <meta itemprop="answer-id" content="62901934" />
+                                    <meta itemprop="answer-url-token" content="180565482" />
+                                    <h2 class="feed-title">
+                                        <a class="question_link" href="/question/$!{vo.question.id}" target="_blank" data-id="16524447" data-za-element-name="Title">$!{vo.question.title}</a></h2>
+                                    <div class="expandable entry-body">
+                                        <link itemprop="url" href="https://www.zhihu.com/question/60752174/answer/180565482" />
+                                        <!-- <meta itemprop="answer-id" content="62901934">
+                                        <meta itemprop="answer-url-token" content="180565482"> -->
+                                        <div class="zm-item-vote">
+                                            <a class="zm-item-vote-count" >$!vo.followCount </a></div>
+
+                                        <div class="zm-item-answer-author-info">
+                          <span class="summary-wrapper">
+                            <span class="author-link-line">
+                              <a class="author-link" data-hovercard="p$t$ptteng" target="_blank" href="/user/${vo.user.id}">${vo.user.name}</a></span>
+                            </span>
+                                        </div>
+
+                                        <div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="16524447" data-action="/answer/content" data-author-name="暗灭" data-entry-url="/question/60752174/answer/180565482">
+                                            <div class="zh-summary summary clearfix">${vo.question.content}
+                                                <a href="/question/$!{vo.question.id}">查看全部</a></div>
+                                            <p class="visible-expanded">
+                                                <a itemprop="url" class="answer-date-link meta-item" data-tooltip="s$t$发布于 2017-06-08" target="_blank" href="https://www.zhihu.com/question/60752174/answer/180565482">编辑于 2017-06-08</a></p>
+                                        </div>
+                                    </div>
+                                    <div class="feed-meta">
+                                        <div class="zm-item-meta answer-actions clearfix js-contentActions">
+                                            <div class="zm-meta-panel">
+                                                <a data-follow="q:link" class="follow-link zg-follow meta-item" href="/question/$!{vo.question.id}" id="sfb-16524447">
+                                                    <i class="z-icon-follow"></i>$!{vo.followCount}人关注问题</a>
+                                                <a href="/question/" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+                                                    <i class="/question/$!{vo.question.id}"></i>${vo.question.commentCount}条评论</a>
+                                                <a href="https://www.zhihu.com/#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
+                                                    <i class="z-icon-comment"></i>发布于 $!{vo.createdDate}</a>
+
+                                            </div>
+                                        </div>
+                                        <a href="https://www.zhihu.com/#" class="ignore zu-autohide" name="dislike" data-tooltip="s$b$不感兴趣"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    #end
+                </div>
+                <a href="javascript:;" id="zh-load-more" data-method="next" class="zg-btn-white zg-r3px zu-button-more" style="">更多</a></div>
+        </div>
+    </div>
+    <div class="zu-main-sidebar" data-za-module="RightSideBar">
+        <div class="zm-side-section">
+            <div class="zm-side-section-inner">
+                <div class="zm-side-nav-group">
+                    <ul class="zm-side-nav" id="zg-sidebar-nav">
+                        <li class="zm-side-nav-li">
+                            <a class="zm-side-nav-link" href="https://www.zhihu.com/collections" data-za-c="collection" data-za-l="sidebar_collections" data-za-a="visit_collections">
+                                <i class="zg-icon zg-icon-sidenav-fav"></i>我的收藏</a>
+                        </li>
+                        <li class="zm-side-nav-li">
+                            <a class="zm-side-nav-link" href="https://www.zhihu.com/question/following">
+                                <i class="zg-icon zg-icon-sidenav-follow"></i>我关注的问题</a>
+                        </li>
+                        <li class="zm-side-nav-li">
+                            <a class="zm-side-nav-link" href="https://www.zhihu.com/question/invited">
+                                <i class="zg-icon zg-icon-sidenav-invite"></i>邀请我回答的问题</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="zm-side-nav-group">
+                    <ul class="zm-side-nav">
+                        <li class="zm-side-nav-li rq3-publiceditlink" id="rq3-sidenav-link">
+                            <a class="zm-side-nav-link" href="https://www.zhihu.com/watch">
+                                <i class="zg-icon zg-icon-sidenav-publicedit"></i>公共编辑动态
+                                <span class="zg-num hidden">0</span></a>
+                        </li>
+                        <li class="zm-side-nav-li">
+                            <a class="zm-side-nav-link z-ico-container" href="https://www.zhihu.com/community">
+                                <i class="z-ico-community"></i>社区服务中心</a>
+                        </li>
+                        <li class="zm-side-nav-li">
+                            <a class="zm-side-nav-link z-ico-container" href="https://www.zhihu.com/copyright">
+                                <i class="zg-icon icon icon-copyright"></i>版权服务中心</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="SidebarSection SidebarListNav">
+            <ul class="SidebarListNav-list">
+                <li class="SidebarListNav-listItem">
+                    <a class="SidebarListNav-itemLink DownloadApp-link" href="https://www.zhihu.com/#">
+                        <i class="SidebarListNav-avatar sprite-sidebar-icon-zhi"></i>
+                        <span class="SidebarListNav-label">下载 App</span></a>
+                </li>
+            </ul>
+        </div>
+        <div id="zh-footer" class="zh-footer">
+            <div class="content zg-wrap clearfix">
+                <ul>
+                    <li>
+                        <a href="https://liukanshan.zhihu.com/" target="_blank">刘看山</a></li>
+                    <li>
+                        <a href="https://www.zhihu.com/question/19581624" target="_blank">知乎指南</a></li>
+                    <li>
+                        <a href="javascript:;" id="js-feedback-button">建议反馈</a></li>
+                    <li>
+                        <a href="https://www.zhihu.com/app" target="_blank">移动应用</a></li>
+                    <li>
+                        <a href="https://www.zhihu.com/careers">加入知乎</a></li>
+                    <li>
+                        <a href="https://www.zhihu.com/terms" target="_blank">知乎协议</a></li>
+                    <li>
+                        <a href="https://www.zhihu.com/jubao" target="_blank">举报投诉</a></li>
+                    <li>
+                        <a href="https://www.zhihu.com/contact">联系我们</a></li>
+                </ul>
+                <span class="copy">© 2017 知乎</span></div>
+        </div>
+    </div>
+</div>
+<script type="text/json" class="json-inline" data-name="guiders2">{
+        "exclusive-popover": {},
+        "section": {},
+        "editor": []
+      }</script>
+<script type="text/template" class="bind-phone-confirmation-dialog-template">< div class = "clearfix bind-phone-confirmation-dialog"data - za - module = "BindPhoneForm" > <p > <span class = "bind-phone-tip" > 应国家法规对于帐号实名的要求，进行下一步操作前，需要先完成手机绑定。 < /span>
+            <a href="https:/ / zhuanlan.zhihu.com / p / 27257715 " target="_blank ">了解更多</a></p>
+<div class="text - right ">
+    <a href="#" class="not - to - bind - phone ">暂不绑定</a>&nbsp;&nbsp;
+    <button class="zg - btn - blue go - to - bind - phone ">去绑定手机</button></div>
+</div>
+"</script>
+<script type="text/template" class="bind-phone-dialog-template">< div class = "code-activate-view clearfix"data - za - module = "BindPhoneForm" > <div class = "tip" > 绑定手机后，你就可以使用知乎的提问、回答、评论和编辑等功能。 < /div>
+    <form class="send-code clearfix">
+        <div class="input-wrapper">
+            <label class="info" for="phone_no-to-send">手机：</label > <input type = "text"id = "phone_no-to-send"name = "new_phone_no"class = "text"required ></div>
+        <button class="submit zg-btn-blue">获取验证码</button ></form>
+    <form class="activate clearfix">
+        <div class="input-wrapper">
+            <label class="info" for="phone_no-to-bind">手机：</label > <input type = "text"id = "phone_no-to-bind"name = "new_phone_no"class = "text"required ></div>
+        <div class="input-wrapper verification-code">
+            <label class="info" for="digits">验证码：</label > <input type = "text"id = "digits"name = "digits"class = "text"placeholder = "6 位数验证码"maxlength = "6"required > <button type = "button"class = "resend-code" > 重发验证码 < /button></div > <button class = "submit zg-btn-blue" > 确认 < /button></form > <div class = "form-help-extra z-text-muted" > <p > 没有收到验证码？ < /p>
+        <p>你也可以私信 <a target="_blank" href="http:/ / www.zhihu.com / people / zhihuadmin ">@知乎小管家</a> 或者发邮件至 <a href="mailto: i@zhihu.com ">i@zhihu.com</a> 联系知乎管理员</p></div>
+</div>
+"</script>
+<script type="text/template" class="bind-email-notification-dialog-template">< div class = "clearfix bind-email-notification-dialog"data - za - module = "BindMailForm" > <p > 由于你的邮箱未验证，你将不能继续用邮箱登录。你可以去重新绑定邮箱。 < /p>
+<div class="text-right">
+    <a class="reload" href="#">不绑定</a > &nbsp; & nbsp; < a href = "/settings/account"class = "zg-btn-blue go-to-bind" > 去绑定邮箱 < /a></div > </div>
+/</script>
+<script type="text/json" class="json-inline" data-name="current_user">["\u9b4f\u6e58\u9675", "wei-xiang-ling-3", "https:\/\/pic1.zhimg.com\/da8e974dc_s.jpg", "11262bac8824cbb2085bd28d91e1d6b7", "", 0, 0, true, "wxl19921120@qq.com", "http:\/\/mail.qq.com", 0, true, false, false, "591642957011750912", false, false, false, true, null, null, false]</script>
+<script type="text/json" class="json-inline" data-name="front_web_config">{
+        "realname_win_config": {
+          "timestamp": 1498147200,
+          "continue_time": 3600,
+          "continue": 1,
+          "tip": "\u5e94\u56fd\u5bb6\u6cd5\u89c4\u5bf9\u4e8e\u5e10\u53f7\u5b9e\u540d\u7684\u8981\u6c42\uff0c\u8fdb\u884c\u4e0b\u4e00\u6b65\u64cd\u4f5c\u524d\uff0c\u9700\u8981\u5148\u5b8c\u6210\u624b\u673a\u7ed1\u5b9a\u3002"
+        }
+      }</script>
+<script type="text/json" class="json-inline" data-name="user_status">[null, null, false]</script>
+<script type="text/json" class="json-inline" data-name="env">["zhihu.com", "comet.zhihu.com", false, null, false, false]</script>
+<script type="text/json" class="json-inline" data-name="permissions">[]</script>
+<script type="text/json" class="json-inline" data-name="ga_vars">{
+        "user_created": 1433838673000,
+        "now": 1498465377000,
+        "abtest_mask": "---------0--------------------",
+        "user_attr": [1, 0, 0, "-", 1],
+        "user_hash": "11262bac8824cbb2085bd28d91e1d6b7"
+      }</script>
+<script type="text/json" class="json-inline" data-name="ra-urls">{
+        "Copyright": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/Copyright.98ac6609.js",
+        "PayUIApp": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/PayUIApp.ca78ba78.js",
+        "CouponApp": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/CouponApp.8387f93f.js",
+        "PaymentApp": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/PaymentApp.7f16d61c.js",
+        "Community": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/Community.ea022099.js",
+        "Report": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/Report.1a8d7f59.js",
+        "OrgOpHelp": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/OrgOpHelp.f891eee7.js",
+        "common": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/common.a4dd3236.js",
+        "BalanceApp": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/BalanceApp.676e538e.js",
+        "AnswerWarrant": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/AnswerWarrant.97f134aa.js",
+        "CommentApp": "https:\/\/static.zhihu.com\/static\/revved\/-\/apps\/CommentApp.d5b37579.js"
+      }</script>
+<script src="js/vendor.cb14a042.js"></script>
+<script src="js/base.7a55fd95.js"></script>
+<script src="js/common.02dedc55.js"></script>
+<script src="js/richtexteditor.778e5cb1.js" async=""></script>
+<script src="js/page-main.e08e9664.js"></script>
+<meta name="entry" content="ZH.entryHome" data-module-id="page-main">
+<script type="text/zscript" znonce="5f7165fd78bc48ee86a2681624a3b5d1"></script>
+<input type="hidden" name="_xsrf" value="4704b3bea4d8082b5bc7b82b92ed0e59">
+<div class="zh-backtotop" style="display:none">
+    <a data-action="backtotop" data-tooltip="s$r$回到顶部" href="javascript:;" class="btn-backtotop btn-action">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+    </a>
+</div>
+<div id="zh-hovercard"></div>
+<div id="zh-tooltip"></div>
+<div class="copyright-notification">
+    <div class="user-image-container">
+        <img class="user-image" src="https://www.zhihu.com/"></div>
+    <div class="tooltip right noty-tooltip">
+        <div class="tooltip-arrow arrow"></div>
+        <div class="tooltip-inner inner">保留所有权利，禁止转载</div></div>
+</div>
+
+#parse("footer.html")

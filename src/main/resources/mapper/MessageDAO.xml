@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.MessageDAO">
+    <sql id="table">message</sql>
+    <sql id="insertFields">from_id, to_id, content, has_read, conversation_id, created_date</sql>
+    <sql id="selectFields">id,from_id, to_id, content, has_read, conversation_id, created_date</sql>
+
+    <insert id="addMessage" >
+        insert into
+        <include refid="table"/>
+        (<include refid="insertFields"/>)
+        values
+        (#{message.fromId},#{message.toId},#{message.content},#{message.hasRead},#{message.conversationId},#{message.createdDate})
+    </insert>
+
+    <select id="getConversationDetail" resultType="com.ssm.model.Message">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+
+        where conversation_id=#{conversationId}
+        order by id
+        desc limit #{offset}, #{limit}
+    </select>
+
+
+    <select id="getConvesationUnreadCount" resultType="int">
+        SELECT
+        COUNT(id)
+        FROM
+        <include refid="table"/>
+
+        WHERE has_read=0
+        AND to_id=#{userId}
+        AND conversation_id=#{conversationId}
+    </select>
+
+
+
+    <select id="getConversationList" resultType="com.ssm.model.Message">
+        SELECT
+        <include refid="insertFields"/>,COUNT(id)
+        AS id
+        FROM
+        (
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+        WHERE from_id=#{userId}
+        OR to_id=#{userId}
+        ORDER BY id desc
+        )
+        tt GROUP BY conversation_id  ORDER BY created_date DESC limit #{offset}, #{limit}
+    </select>
+
+</mapper>

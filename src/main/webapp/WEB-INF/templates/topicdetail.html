@@ -1,0 +1,138 @@
+#parse("header.html")
+#parse("header_null.html")
+<link rel="stylesheet" href="../css/001.css">
+<link rel="stylesheet" href="../css/topicDetail.css">
+<div class="zg-wrap zu-main clearfix with-indention-votebar" itemscope="" itemtype="http://schema.org/Question"
+     id="zh-single-question-page" data-urltoken="36301524" role="main">
+    <div class="zu-main-content">
+        <div class="zu-main-content-inner">
+            <meta itemprop="isTopQuestion" content="false">
+            <meta itemprop="visitsCount" content="402">
+            <!--
+            <div class="zm-tag-editor zg-section">
+                <div class="zm-tag-editor-labels zg-clear">
+                    <a data-tip="t$b$19550730" class="zm-item-tag" href="">新浪微博</a>
+                    <a data-tip="t$b$19554412" class="zm-item-tag" href="">网络营销</a>
+                    <a data-tip="t$b$19559739" class="zm-item-tag" href="">微博粉丝</a>
+                    <a data-tip="t$b$19560290" class="zm-item-tag" href="">僵尸粉</a>
+                    <a data-tip="t$b$19565757" class="zm-item-tag" href="">网络水军</a>
+                    <a href="javascript:;" class="zu-edit-button" name="edit">
+                        <i class="zu-edit-button-icon"></i>修改</a>
+                </div>
+            </div>
+            -->
+            <div id="zh-question-title" data-editable="true" class="zm-editable-status-normal">
+                <h2 class="zm-item-title">
+                    <img src="${topic.topicImage}" width="50" height="50" />
+                    <span class="zm-editable-content">$!{topic.topicName}</span>
+
+                </h2>
+            </div>
+            <div id="zh-question-detail" class="zm-item-rich-text zm-editable-status-normal">
+                <div class="zm-editable-content">#</div>
+            </div>
+            <div class="zm-side-section">
+                <div class="zm-side-section-inner" id="zh-question-side-header-wrap">
+
+                    <!--#if ($followed)-->
+                    <!--<button class="zg-btn zg-btn-unfollow zm-rich-follow-btn small nth-0-->
+                                    <!--js-follow-topic" data-status="1" data-id="$topic.topicId">取消关注</button>-->
+                    <!--#else-->
+                    <!--<button class="zg-btn zg-btn-follow zm-rich-follow-btn small nth-0-->
+                                    <!--js-follow-topic" data-id="topic.topicId">关注</button>-->
+                    <!--#end-->
+
+
+                    <!--<button id="followTopicButton" class="follow" style="display:none;">关注话题</button>-->
+                    <!--<button id="unfollowTopicButton" class="unfollow" style="display:none;">取消关注</button>-->
+                    <!--<a href="#">${topic.followedCount}</a><span> 人关注了该话题</span>-->
+
+
+
+
+
+                    #if ($followed)
+                    <form action="/unfollowTopic" method="post" accept-charset="UTF-8">
+                        <input type="hidden" name="topicId" value="$topic.topicId"/>
+                        <input type="hidden" name="next" value="/topic/$topic.topicId"/>
+                        <button type="submit" class="submit-button zg-btn-blue">取消关注</button>
+
+                    </form>
+                    #else
+                    <form action="/followTopic" method="post" accept-charset="UTF-8">
+                        <input type="hidden" name="topicId" value="$topic.topicId"/>
+                        <input type="hidden" name="next" value="/topic/$topic.topicId"/>
+                        <button type="submit" class="submit-button zg-btn-blue">关注话题</button>
+                    </form>
+                    #end
+
+                    <div class="zh-question-followers-sidebar">
+                        <div class="zg-gray-normal">
+                            <a href="javascript:void(0);"><strong class="js-user-count">${followCount}</strong></a>人关注该话题
+                        </div>
+                        <div class="list zu-small-avatar-list zg-clear js-user-list">
+                            #foreach($vo in $followUsers)
+                            <a class="zm-item-link-avatar js-user-${vo.id}" href="/user/${vo.id}"
+                               data-original_title="${vo.name}">
+                                <img src="${vo.headUrl}"
+                                     class="zm-item-img-avatar"></a>
+                            #end
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="zg-section" id="zh-home-list-title">
+                <i class="zg-icon zg-icon-feedlist"></i>最新动态
+                <input type="hidden" id="is-topstory">
+                <span class="zg-right zm-noti-cleaner-setting" style="list-style:none"></span></div>
+            <div class="zu-main-feed-con navigable" data-feedtype="topstory" id="zh-question-list" data-widget="navigable" data-navigable-options="{&quot;items&quot;:&quot;&gt; .zh-general-list .feed-content&quot;,&quot;offsetTop&quot;:-82}">
+                <a href="javascript:;" class="zu-main-feed-fresh-button" id="zh-main-feed-fresh-button" style="display:none"></a>
+                <div id="js-home-feed-list" class="zh-general-list topstory clearfix" data-init="{&quot;params&quot;: {}, &quot;nodename&quot;: &quot;TopStory2FeedList&quot;}" data-za-module="TopStoryFeedList">
+                    #foreach($vo in $qvos)
+                    <hr/>
+                    <div class="feed-main">
+                        <div class="feed-content">
+                            <h2><a class="question_link" href="/question/$!{vo.question.id}" target="_blank" data-id="582378" data-za-element-name="Title"> $!{vo.question.title} </a></h2>
+                            <div class="expandable entry-body">
+                                <link itemprop="url" href="https://www.zhihu.com/question/21004786/answer/191555363" />
+                                <!-- <meta itemprop="answer-id" content="64899532">
+                    <meta itemprop="answer-url-token" content="191555363"> -->
+                                <div class="zm-item-vote">
+                                    <a class="zm-item-vote-count js-expand js-vote-count" href="javascript:;" data-bind-votecount="">$!{vo.qFollowCount}</a>
+                                </div>
+
+                                <div class="zm-item-answer-author-info">
+                                    <span class="summary-wrapper"> <span class="author-link-line"> <a class="author-link" data-hovercard="p$t$jessica-lok" target="_blank" href="https://www.zhihu.com/people/jessica-lok">$!{vo.quser.name}</a></span> </span>
+                                </div>
+
+                                <div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="582378" data-action="/answer/content" data-author-name="jessica lok" data-entry-url="/question/21004786/answer/191555363">
+
+                                    <div class="zh-summary summary clearfix">
+                                        $!{vo.question.content}
+                                        <a href="/question/$!{vo.question.id}" class="toggle-expand">显示全部</a>
+                                    </div>
+                                    <p class="visible-expanded"><a itemprop="url" class="answer-date-link meta-item" data-tooltip="s$t$发布于 2017-06-30" target="_blank" href="https://www.zhihu.com/question/21004786/answer/191555363">发布于 $!{createDate}</a></p>
+                                </div>
+                            </div>
+                            <div class="zm-item-meta feed-meta">
+                                <div class="zm-item-meta answer-actions clearfix js-contentActions">
+                                    <div class="zm-meta-panel">
+                                        <a data-follow="q:link" class="follow-link zg-follow meta-item" href="javascript:;" id="sfb-582378"><i class="z-icon-follow"></i>$!{vo.qFollowCount}人关注问题</a>
+                                        <a href="https://www.zhihu.com/topic#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox"> <i class="z-icon-comment"></i>$!{vo.qCommentCount} 条评论</a>
+                                        <a>发布于$!{vo.createdDate}</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    #end
+                </div>
+                <a href="javascript:;" id="zh-load-more" data-method="next" class="zg-btn-white zg-r3px zu-button-more" style="">更多</a></div>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+#parse("footer.html")

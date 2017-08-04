@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.QuestionDAO">
+    <sql id="table">question</sql>
+    <sql id="selectFields">id, title, content, comment_count,created_date,user_id,topicName
+    </sql>
+    <sql id="insertFields">title, content, comment_count,created_date,user_id,topicName
+    </sql>
+
+    <insert id="addQuestion" >
+        insert into
+        <include refid="table"/>
+        (<include refid="insertFields"/>)
+        values
+        (#{question.title},#{question.content},#{question.commentCount},#{question.createdDate},#{question.userId},#{question.topicName})
+    </insert>
+
+    <select id="selectLatestQuestions" resultType="com.ssm.model.Question">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+
+        <if test="userId != 0">
+            WHERE user_id = #{userId}
+        </if>
+        ORDER BY id DESC
+        LIMIT #{offset},#{limit}
+    </select>
+
+    <select id="getById" resultType="com.ssm.model.Question">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+
+        WHERE id = #{id}
+    </select>
+
+    <update id="updateCommentCount" >
+        update
+        <include refid="table"/>
+        set
+        comment_count=#{commentCount}
+
+        where id = #{id}
+    </update>
+
+    <select id="selectByTopicName" resultType="com.ssm.model.Question">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+        WHERE
+        topicName = #{topicName}
+    </select>
+
+    <select id="selectByCommentCount" resultType="com.ssm.model.Question">
+        SELECT
+        <include refid="selectFields"/>
+        FROM
+        <include refid="table"/>
+        ORDER BY comment_count DESC
+        LIMIT #{offset},#{limit}
+    </select>
+</mapper>
